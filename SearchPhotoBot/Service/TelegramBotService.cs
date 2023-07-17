@@ -9,7 +9,7 @@ namespace SearchPhotoBot.Service;
 
 public class TelegramBotService
 {
-    private string _botToken = "6069245422:AAFK2UejTvlJXUfNOrDGSBE-Dtzgp3cwvg0";
+    private string _botToken = "";
     private ITelegramBotClient _telegramBotClient;
     private PhotoApiService _photoApiService;
 

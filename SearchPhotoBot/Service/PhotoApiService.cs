@@ -6,7 +6,7 @@ namespace SearchPhotoBot.Service;
 public class PhotoApiService
 {
     private HttpClient _photoApiClient;
-    private string ApiKey = "4LbKLxS2GlIz9RehBZWK0r82vCZ6oHE0mQivWElDQvAsatQX3ezFQA4B";
+    private string ApiKey = "";
 
     public PhotoApiService()
     {
