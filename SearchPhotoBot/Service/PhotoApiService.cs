@@ -6,7 +6,7 @@ namespace SearchPhotoBot.Service;
 public class PhotoApiService
 {
     private HttpClient _photoApiClient;
-    private string ApiKey = "";
+    private string ApiKey = "4LbKLxS2GlIz9RehBZWK0r82vCZ6oHE0mQivWElDQvAsatQX3ezFQA4B";
 
     public PhotoApiService()
     {
@@ -19,7 +19,7 @@ public class PhotoApiService
         try
         {
             var resultHttpResponseMessage =
-                await _photoApiClient.GetAsync($"https://api.pexels.com/v1/search?query={searchName}&per_page=1");
+                await _photoApiClient.GetAsync($"https://api.pexels.com/v1/search?query=asdfgf&per_page=1");
             string resultResponseString = await resultHttpResponseMessage.Content.ReadAsStringAsync();
             Root? ResultRoot = JsonSerializer.Deserialize<Root>(resultResponseString);
             return ResultRoot.Photos[0].Src.Original;
@@ -32,12 +32,12 @@ public class PhotoApiService
         return "https://images.pexels.com/photos/4220084/pexels-photo-4220084.jpeg";
     }
 
-    public async Task<List<Photo>> SendPhotos(string searchName)
+    public async Task<List<Photo>> SendPhotos(string searchName,int page)
     {
         try
         {
             var resultHttpResponseMessage =
-                await _photoApiClient.GetAsync($"https://api.pexels.com/v1/search?query={searchName}");
+                await _photoApiClient.GetAsync($"https://api.pexels.com/v1/search?query={searchName}&page={page}&per_page=10");
             string resultResponseString = await resultHttpResponseMessage.Content.ReadAsStringAsync();
             Root? ResultRoot = JsonSerializer.Deserialize<Root>(resultResponseString);
             return ResultRoot.Photos;
@@ -47,6 +47,11 @@ public class PhotoApiService
             Console.WriteLine(e);
         }
 
-        return null;
+        var i = new List<Photo>();
+        i.Add(new Photo()
+        {
+            Url = "https://images.pexels.com/photos/4220084/pexels-photo-4220084.jpeg"
+        });
+        return i;
     }
 }
